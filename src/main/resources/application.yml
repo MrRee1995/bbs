@@ -1,0 +1,59 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: #用户名
+    password: #你的密码
+    url: jdbc:mysql://url?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 30MB
+      max-request-size: 30MB
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: false
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 127.0.0.1:9300
+      repositories:
+        enabled: true
+  ##redis配置，默认密码为空
+  redis:
+    host: localhost
+    # Redis服务器连接端口
+    port: 6379
+    jedis:
+      pool:
+        #连接池最大连接数（使用负值表示没有限制）
+        max-active: 100
+        # 连接池中的最小空闲连接
+        max-idle: 10
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: 100000
+    # 连接超时时间（毫秒）
+    timeout: 5000
+    #默认是索引为0的数据库
+    database: 0
+    password: #你的密码
+  #  json格式化
+  jackson:
+    default-property-inclusion: non_null
+#微信小程序配置
+wechat:
+  appId: #appId
+  appSecret: #appSecret
+#七牛云配置
+qiniu:
+  accessKey: #你的accessKey
+  secretKey: #你的secretKey
+  bucket: #你的bucket
+  path: #你的七牛云地址
+server:
+  servlet:
+    context-path: /bbs
+  port: 80
